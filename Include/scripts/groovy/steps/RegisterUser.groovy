@@ -78,21 +78,6 @@ class RegisterUsers {
 	@When("user click on Daftar button")
 	def clickDaftarButton() {
 		WebUI.click(findTestObject('Object Repository/Page_Daftar/buttonDaftar'))
-
-		boolean isCaptchaVisible = WebUI.verifyElementPresent(
-				findTestObject('Object Repository/Page_Daftar/iframeCaptcha'),10,FailureHandling.OPTIONAL
-				)
-
-		if (isCaptchaVisible) {
-			WebUI.switchToFrame(findTestObject('Object Repository/Page_Daftar/iframeCaptcha'),10)
-			WebUI.click(findTestObject('Object Repository/Page_Daftar/ImNotRobot'))
-			WebUI.comment('CAPTCHA ditemukan dan diklik')
-			WebUI.comment('Menunggu mengisi Captcha')
-			WebUI.waitForElementClickable(findTestObject('Object Repository/Page_Daftar/buttonDaftar'),20, FailureHandling.STOP_ON_FAILURE)
-			WebUI.click(findTestObject('Object Repository/Page_Daftar/buttonDaftar'))
-		} else {
-			WebUI.comment('CAPTCHA tidak muncul, lanjut tanpa klik')
-		}
 	}
 
 	@Then("system display OTP Page")
